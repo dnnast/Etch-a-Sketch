@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Etch-a-Sketch</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <div class="settings">
+
+            <div id="range-container">
+                <p>Change size of the Grid:</p>
+                <input type="range" min="1" max="100" value="16" class="slider">
+            </div>
+
+            <div id="color-picker-container">
+                <label for="colorpicker">Pick Color:</label>
+                <input type="color" id="colorpicker" value="#0000ff">
+                <button type="click" id="randomBtn">Random Color</button>
+                <!--
+                <div>
+                    <input type="checkbox" id="darkening" name="darkening"  />
+                    <label for="darkening">Progressive Darkening</label>
+                </div>
+                -->
+            </div>
+
+            <button type="click" id="clearBtn">Clear Grid</button>
+
+        </div>
+
+        <div class="grid"></div>
+
+        <script src="script.js" async defer></script>
+    </body>
+</html>
