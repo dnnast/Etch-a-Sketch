@@ -12,19 +12,17 @@ let size = 16;
 let defaultColor = "#0000ff";
 
 //--------------------HELPER FUNCTIONS-----------------------------------
-function addOpacity(color) {
+function increaseOpacity(color) {
     if (color.includes("rgba")) {
         let opacity = color.split(",")[3].slice(0, -1);
-        if (opacity == 0.9) {
-            return color;
-        } else {
-            color = color.replace(opacity, (parseFloat(opacity) + 0.1).toFixed(1));
-        }
-    } else {
-        color = color.replace("rgb", "rgba").replace(")", ", 0.1)");
+        return color.replace(opacity, (parseFloat(opacity) + 0.1).toFixed(1));
     }
 
     return color;
+}
+
+function addOpacity(color) {
+    return color.replace("rgb", "rgba").replace(")", ", 0.1)");
 }
 
 function hex2rgb(hexColor) {
@@ -63,44 +61,55 @@ const createGrid = (size = 16) => {
 
 function clearGrid() {
     grid.innerHTML = ``;
-    colorPicker.value = "#0000ff";
+    colorPicker.value = defaultColor;
 }
 
-function draw(color = "#0000ff") {
-    color = hex2rgb(color);
-
+function draw(color = "#ff5900") {
     let cells = document.querySelectorAll(".cell");
     cells.forEach((cell) => {
         cell.addEventListener("mouseover", (event) => {
+            let i = 0;
             if (random) {
                 // Random color
                 event.target.style.backgroundColor = "#" + Math.random().toString(16).substr(-6);
             } else if (darkerning) {
                 // Progressive Darkening
-                if (event.target.style.backgroundColor.includes("rgba")) {
-                    let color2 = addOpacity(event.target.style.backgroundColor);
+                if (event.target.classList.contains("darkening")) {
+                    let color2 = increaseOpacity(event.target.style.backgroundColor);
                     event.target.style.backgroundColor = color2;
                 } else {
-                    let color1 = addOpacity(color);
+                    let color1 = addOpacity(hex2rgb(defaultColor));
+                    console.log(color, color1);
                     event.target.style.backgroundColor = color1;
+                    event.target.classList.add("darkening");
                 }
             } else {
                 event.target.style.backgroundColor = color;
+                event.target.classList.add("darkening");
             }
         });
+    });
+}
+
+function removeDarkeningClass() {
+    let cells = document.querySelectorAll(".cell");
+    cells.forEach((cell) => {
+        cell.classList.remove("darkening");
     });
 }
 
 function startDrawing(size = 16) {
     clearGrid();
     createGrid(size);
-    draw();
+    draw(defaultColor);
 }
 
 // --------------------EVENT LISTENERS-------------------------------------
 colorPicker.addEventListener("input", (event) => {
     defaultColor = event.target.value;
     draw(defaultColor);
+
+    removeDarkeningClass();
 });
 
 slider.addEventListener("mouseup", (event) => {
@@ -129,6 +138,8 @@ darkerCheckbox.addEventListener("click", (event) => {
     } else {
         darkerning = false;
         randomCheckbox.disabled = false;
+
+        removeDarkeningClass();
     }
 });
 
