@@ -2,7 +2,10 @@
     margin: 0;
     padding: 0;
 
-    color: #EAE4C8
+    color: #EAE4C8;
+    font-family: "Orbitron", sans-serif;
+    font-weight: 500;
+    font-size: 23px;
 }
 
 body{
@@ -15,12 +18,14 @@ body{
 }
 
 .settings{
-    margin: 50px auto;
+    margin: 30px auto;
     text-align: center;
 }
 
 #color-picker-container{
-    margin: 30px auto;
+    margin: 20px auto;
+    display: flex;
+    flex-direction: column;
 }
 .grid{
     display: flex;
@@ -29,7 +34,7 @@ body{
     width: 600px;
     height: 600px;
     border: 10px solid #EAE4C8; 
-    background-color: #cfcfcf;
+    background-color: white;
     margin-bottom: 60px;
 }
 
@@ -42,3 +47,12 @@ body{
     /* border: thin solid #ebedeb;  */
     box-sizing: border-box;
 }
+
+
+button{
+    background-color: #EAE4C8;
+    border: none;
+    color: #1C2F75;
+    padding: 5px 10px;
+}
+
