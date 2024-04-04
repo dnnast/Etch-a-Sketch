@@ -37,18 +37,14 @@ function clearGrid() {
 
 function draw(color = "blue") {
     let cells = document.querySelectorAll(".cell");
+    console.log(color);
     cells.forEach((cell) => {
         cell.addEventListener("mouseover", (event) => {
-            if (color == -1) {
+            if (color == true) {
                 // random color
                 event.target.style.backgroundColor = "#" + Math.random().toString(16).substr(-6);
             } else {
                 event.target.style.backgroundColor = color;
-            }
-
-            if (dark) {
-                event.target.style.opacity += 0.1;
-            } else {
             }
         });
     });
@@ -75,7 +71,7 @@ clearGridBtn.addEventListener("click", (event) => {
 });
 
 randomBtn.addEventListener("click", (event) => {
-    draw(-1);
+    draw(event.target.checked);
 });
 
 startDrawing();
