@@ -1,6 +1,8 @@
 *{
     margin: 0;
     padding: 0;
+
+    color: #EAE4C8
 }
 
 body{
@@ -8,6 +10,8 @@ body{
     flex-direction: column;
     justify-content: center;
     align-items: center;
+
+    background-color: #1C2F75;
 }
 
 .settings{
@@ -24,6 +28,9 @@ body{
     
     width: 600px;
     height: 600px;
+    border: 10px solid #EAE4C8; 
+    background-color: #cfcfcf;
+    margin-bottom: 60px;
 }
 
 .row{
@@ -32,6 +39,6 @@ body{
 }
 
 .cell{
-    border: 1px solid black;
+    /* border: thin solid #ebedeb;  */
     box-sizing: border-box;
 }
