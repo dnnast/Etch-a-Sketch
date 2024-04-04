@@ -9,7 +9,7 @@ const darkerCheckbox = document.getElementById("darkening");
 let random = false;
 let darkerning = false;
 let size = 16;
-let color = "#0000ff";
+let defaultColor = "#0000ff";
 
 //--------------------HELPER FUNCTIONS-----------------------------------
 function addOpacity(color) {
@@ -99,8 +99,8 @@ function startDrawing(size = 16) {
 
 // --------------------EVENT LISTENERS-------------------------------------
 colorPicker.addEventListener("input", (event) => {
-    color = event.target.value;
-    draw(color);
+    defaultColor = event.target.value;
+    draw(defaultColor);
 });
 
 slider.addEventListener("mouseup", (event) => {
